@@ -13,7 +13,7 @@ class Account(
   }
 
   override fun withdraw(amount: Int) {
-    // TODO
+    transactions.add(Transaction(-amount))
   }
 
   override fun printStatement() {
