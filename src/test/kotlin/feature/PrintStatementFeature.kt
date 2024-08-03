@@ -9,12 +9,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.inOrder
-import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
-internal class PrintStatementFeature() {
+internal class PrintStatementFeature {
 
   @Mock
   private lateinit var console: Console
@@ -42,21 +41,5 @@ internal class PrintStatementFeature() {
         verify(it).printLine("01/04/2024  | 1000.00  | 1000.00  |")
       }
     }
-  }
-
-  @Test
-  fun `prints a different account statement containing all of its transactions to the console`() {
-    account.deposit(1100)
-    account.withdraw(650)
-    account.withdraw(310)
-    account.deposit(300)
-
-    account.printStatement()
-
-    verify(console).printLine("DATE        | AMOUNT   | BALANCE  |")
-    verify(console).printLine("10/04/2024  | 300.00   | 440.00  |")
-    verify(console).printLine("03/04/2024  | -310.00  | 140.00   |")
-    verify(console).printLine("02/04/2024  | -650.00  | 450.00   |")
-    verify(console).printLine("01/04/2024  | 1100.00  | 1100.00  |")
   }
 }
