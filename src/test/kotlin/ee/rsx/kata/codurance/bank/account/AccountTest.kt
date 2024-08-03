@@ -27,7 +27,7 @@ internal class AccountTest {
 
   @BeforeEach
   fun setup() {
-    account = Account(console, transactions)
+    account = Account(console, transactions, statementPrinter)
   }
 
   @Test
@@ -58,6 +58,7 @@ internal class AccountTest {
   @Test
   fun `printing a statement prints all stored transactions`() {
     val storedTransactions = listOf(Transaction(123))
+    whenever(transactions.listAll()).thenReturn(storedTransactions)
 
     account.printStatement()
 

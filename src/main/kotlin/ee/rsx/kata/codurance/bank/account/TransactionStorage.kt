@@ -12,4 +12,8 @@ class TransactionStorage {
   fun isAvailable(amount: Int): Boolean {
     TODO("Not yet implemented")
   }
+
+  fun listAll(): List<Transaction> {
+    TODO("Not yet implemented")
+  }
 }
