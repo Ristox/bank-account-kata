@@ -13,7 +13,9 @@ class Account(
   }
 
   override fun withdraw(amount: Int) {
-    transactions.store(Transaction(-amount))
+    if (transactions.isAvailable(amount)) {
+      transactions.store(Transaction(-amount))
+    }
   }
 
   override fun printStatement() {
