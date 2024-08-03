@@ -1,13 +1,11 @@
-package ee.rsx.kata.codurance.bank.feature
+package feature
 
 import ee.rsx.kata.codurance.bank.AccountService
 import ee.rsx.kata.codurance.bank.Console
 import ee.rsx.kata.codurance.bank.account.Account
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.InOrder
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.inOrder
 import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
