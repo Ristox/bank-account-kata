@@ -1,6 +1,7 @@
 package ee.rsx.kata.codurance.bank.account
 
 import ee.rsx.kata.codurance.bank.Console
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
@@ -19,10 +20,15 @@ internal class AccountTest {
   @Mock
   private lateinit var console: Console
 
+  private lateinit var account: Account
+
+  @BeforeEach
+  fun setup() {
+    account = Account(console, transactions)
+  }
+
   @Test
   fun `depositing an amount adds a new deposit with the given amount`() {
-    val account = Account(console, transactions)
-
     account.deposit(789)
 
     verify(transactions).addDeposit(789)
@@ -30,7 +36,6 @@ internal class AccountTest {
 
   @Test
   fun `withdrawing an amount does not add a new withdrawal, when the amount isn't available for withdrawal`() {
-    val account = Account(console, transactions)
     whenever(transactions.isAvailable(333)).thenReturn(false)
 
     account.withdraw(333)
@@ -40,7 +45,6 @@ internal class AccountTest {
 
   @Test
   fun `withdrawn amount is stored as a new transaction, when the amount is available for withdrawal`() {
-    val account = Account(console, transactions)
     whenever(transactions.isAvailable(333)).thenReturn(true)
 
     account.withdraw(333)
