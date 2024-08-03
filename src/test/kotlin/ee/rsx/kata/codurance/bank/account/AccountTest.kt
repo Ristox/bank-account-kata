@@ -17,7 +17,7 @@ internal class AccountTest {
   private lateinit var console: Console
 
   @Test
-  fun `deposited amount is printed out as a statement line`() {
+  fun `deposited amount is added as a new transaction with the amount`() {
     val account = Account(console, transactions)
 
     account.deposit(789)
