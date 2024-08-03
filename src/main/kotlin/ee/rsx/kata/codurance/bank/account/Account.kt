@@ -4,11 +4,11 @@ import ee.rsx.kata.codurance.bank.AccountService
 import ee.rsx.kata.codurance.bank.Console
 
 class Account(
-  private val console: Console
+  private val console: Console,
+  private val transactions: TransactionStorage
 ) : AccountService {
 
   override fun deposit(amount: Int) {
-    // TODO
   }
 
   override fun withdraw(amount: Int) {

@@ -3,6 +3,7 @@ package feature
 import ee.rsx.kata.codurance.bank.AccountService
 import ee.rsx.kata.codurance.bank.Console
 import ee.rsx.kata.codurance.bank.account.Account
+import ee.rsx.kata.codurance.bank.account.TransactionStorage
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
@@ -21,7 +22,7 @@ internal class PrintStatementFeature() {
 
   @BeforeEach
   fun setup() {
-    account = Account(console)
+    account = Account(console, TransactionStorage())
   }
 
   @Test
