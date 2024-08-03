@@ -9,11 +9,11 @@ class Account(
 ) : AccountService {
 
   override fun deposit(amount: Int) {
-    transactions.add(Transaction(amount))
+    transactions.store(Transaction(amount))
   }
 
   override fun withdraw(amount: Int) {
-    transactions.add(Transaction(-amount))
+    transactions.store(Transaction(-amount))
   }
 
   override fun printStatement() {
