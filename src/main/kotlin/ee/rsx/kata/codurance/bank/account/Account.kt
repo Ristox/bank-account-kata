@@ -9,12 +9,12 @@ class Account(
 ) : AccountService {
 
   override fun deposit(amount: Int) {
-    transactions.store(Transaction(amount))
+    transactions.addDeposit(amount)
   }
 
   override fun withdraw(amount: Int) {
     if (transactions.isAvailable(amount)) {
-      transactions.store(Transaction(-amount))
+      transactions.addWithdrawal(amount)
     }
   }
 

@@ -20,22 +20,22 @@ internal class AccountTest {
   private lateinit var console: Console
 
   @Test
-  fun `deposited amount is stored as a new transaction with the amount`() {
+  fun `depositing an amount adds a new deposit with the given amount`() {
     val account = Account(console, transactions)
 
     account.deposit(789)
 
-    verify(transactions).store(Transaction(789))
+    verify(transactions).addDeposit(789)
   }
 
   @Test
-  fun `withdrawn amount is not stored as a new transaction, when the amount isn't available for withdrawal`() {
+  fun `withdrawing an amount does not add a new withdrawal, when the amount isn't available for withdrawal`() {
     val account = Account(console, transactions)
     whenever(transactions.isAvailable(333)).thenReturn(false)
 
     account.withdraw(333)
 
-    verify(transactions, never()).store(any())
+    verify(transactions, never()).addWithdrawal(any())
   }
 
   @Test
@@ -45,6 +45,6 @@ internal class AccountTest {
 
     account.withdraw(333)
 
-    verify(transactions).store(Transaction(-333))
+    verify(transactions).addWithdrawal(333)
   }
 }
