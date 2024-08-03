@@ -9,6 +9,7 @@ class Account(
 ) : AccountService {
 
   override fun deposit(amount: Int) {
+    transactions.add(Transaction(amount))
   }
 
   override fun withdraw(amount: Int) {
