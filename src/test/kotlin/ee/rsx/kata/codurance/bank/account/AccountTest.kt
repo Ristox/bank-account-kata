@@ -24,4 +24,13 @@ internal class AccountTest {
 
     verify(transactions).add(Transaction(789))
   }
+
+  @Test
+  fun `withdrawn amount is added as a new transaction with the amount`() {
+    val account = Account(console, transactions)
+
+    account.withdraw(333)
+
+    verify(transactions).add(Transaction(-333))
+  }
 }
