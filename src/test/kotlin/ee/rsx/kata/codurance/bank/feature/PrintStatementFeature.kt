@@ -24,7 +24,7 @@ class PrintStatementFeature() {
   }
 
   @Test
-  fun `prints account statement containing all transactions to the console`() {
+  fun `prints account statement containing all of its transactions to the console`() {
     account.deposit(1000)
     account.withdraw(100)
     account.deposit(500)
@@ -35,5 +35,21 @@ class PrintStatementFeature() {
     verify(console).printLine("10/04/2024  | 500.00   | 1400.00  |")
     verify(console).printLine("02/04/2024  | -100.00  | 900.00   |")
     verify(console).printLine("01/04/2024  | 1000.00  | 1000.00  |")
+  }
+
+  @Test
+  fun `prints a different account statement containing all of its transactions to the console`() {
+    account.deposit(1100)
+    account.withdraw(650)
+    account.withdraw(310)
+    account.deposit(300)
+
+    account.printStatement()
+
+    verify(console).printLine("DATE        | AMOUNT   | BALANCE  |")
+    verify(console).printLine("10/04/2024  | 300.00   | 440.00  |")
+    verify(console).printLine("03/04/2024  | -310.00  | 140.00   |")
+    verify(console).printLine("02/04/2024  | -650.00  | 450.00   |")
+    verify(console).printLine("01/04/2024  | 1100.00  | 1100.00  |")
   }
 }
