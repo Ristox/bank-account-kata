@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
-class PrintStatementFeature() {
+internal class PrintStatementFeature() {
 
   @Mock
   private lateinit var console: Console
