@@ -5,7 +5,10 @@ import ee.rsx.kata.codurance.bank.Console
 import ee.rsx.kata.codurance.bank.account.Account
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.InOrder
 import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.Mockito.inOrder
 import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.Test
@@ -31,10 +34,14 @@ class PrintStatementFeature() {
 
     account.printStatement()
 
-    verify(console).printLine("DATE        | AMOUNT   | BALANCE  |")
-    verify(console).printLine("10/04/2024  | 500.00   | 1400.00  |")
-    verify(console).printLine("02/04/2024  | -100.00  | 900.00   |")
-    verify(console).printLine("01/04/2024  | 1000.00  | 1000.00  |")
+    console.let {
+      inOrder(it).apply {
+        verify(it).printLine("DATE        | AMOUNT   | BALANCE  |")
+        verify(it).printLine("10/04/2024  | 500.00   | 1400.00  |")
+        verify(it).printLine("02/04/2024  | -100.00  | 900.00   |")
+        verify(it).printLine("01/04/2024  | 1000.00  | 1000.00  |")
+      }
+    }
   }
 
   @Test
