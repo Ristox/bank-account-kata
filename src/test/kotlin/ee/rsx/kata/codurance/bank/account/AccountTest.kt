@@ -15,10 +15,13 @@ import kotlin.test.Test
 internal class AccountTest {
 
   @Mock
+  private lateinit var console: Console
+
+  @Mock
   private lateinit var transactions: TransactionStorage
 
   @Mock
-  private lateinit var console: Console
+  private lateinit var statementPrinter: StatementPrinter
 
   private lateinit var account: Account
 
@@ -50,5 +53,14 @@ internal class AccountTest {
     account.withdraw(333)
 
     verify(transactions).addWithdrawal(333)
+  }
+
+  @Test
+  fun `printing a statement prints all stored transactions`() {
+    val storedTransactions = listOf(Transaction(123))
+
+    account.printStatement()
+
+    verify(statementPrinter).print(storedTransactions)
   }
 }
