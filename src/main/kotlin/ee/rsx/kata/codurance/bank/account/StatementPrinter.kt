@@ -18,7 +18,7 @@ class StatementPrinter(private val console: Console) {
   }
 
   companion object {
-    private const val DATE_FORMAT = "dd/MM/yyyy"
+    const val DATE_FORMAT = "dd/MM/yyyy"
   }
 }
 

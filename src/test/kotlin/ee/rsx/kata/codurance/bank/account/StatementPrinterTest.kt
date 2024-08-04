@@ -1,6 +1,7 @@
 package ee.rsx.kata.codurance.bank.account
 
 import ee.rsx.kata.codurance.bank.Console
+import ee.rsx.kata.codurance.bank.account.StatementPrinter.Companion.DATE_FORMAT
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -8,7 +9,7 @@ import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.inOrder
 import org.mockito.kotlin.verify
-import java.time.LocalDate
+import java.time.LocalDate.now
 import java.time.format.DateTimeFormatter.ofPattern
 
 @ExtendWith(MockitoExtension::class)
@@ -37,11 +38,11 @@ class StatementPrinterTest {
 
     statementPrinter.print(transactions)
 
-    val expectedTodaysDatePrinted = LocalDate.now().format(ofPattern("dd/MM/yyyy"))
+    val todaysDatePrinted = now().format(ofPattern(DATE_FORMAT))
     console.let {
       inOrder(it).apply {
         verify(it).printLine("DATE        | AMOUNT   | BALANCE  |")
-        verify(it).printLine("$expectedTodaysDatePrinted  | 555.00   | 555.00   |")
+        verify(it).printLine("$todaysDatePrinted  | 555.00   | 555.00   |")
       }
     }
   }
