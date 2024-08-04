@@ -20,11 +20,11 @@ class StatementPrinter(private val console: Console) {
       }
   }
 
-  private fun Transaction.asLine(runningTotal: Int): String =
-      "${date.format(ofPattern(DATE_FORMAT))}  | ${amount.asDecimal()}   | ${runningTotal.asDecimal()}   |"
+  private fun Transaction.asLine(runningTotal: Int) =
+      "${date.format(ofPattern(DATE_FORMAT))}  | ${amount.format()}   | ${runningTotal.format()}   |"
 
 
-  private fun Int.asDecimal() = BigDecimal(this).setScale(2)
+  private fun Int.format() = BigDecimal(this).setScale(2)
 
   companion object {
     const val DATE_FORMAT = "dd/MM/yyyy"
