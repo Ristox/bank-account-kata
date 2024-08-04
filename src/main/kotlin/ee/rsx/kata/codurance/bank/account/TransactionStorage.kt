@@ -13,7 +13,7 @@ class TransactionStorage {
   }
 
   fun addWithdrawal(amount: Int) {
-    TODO("Not yet implemented")
+    transactions.add(Transaction(-amount))
   }
 
   fun listAll(): List<Transaction> {
