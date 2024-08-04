@@ -8,11 +8,11 @@ class TransactionStorage {
     transactions.add(Transaction(amount))
   }
 
-  fun addWithdrawal(amount: Int) {
-    TODO("Not yet implemented")
+  fun isAvailable(amount: Int): Boolean {
+    return transactions.sumOf { it.amount } >= amount
   }
 
-  fun isAvailable(amount: Int): Boolean {
+  fun addWithdrawal(amount: Int) {
     TODO("Not yet implemented")
   }
 
