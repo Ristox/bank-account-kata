@@ -22,7 +22,7 @@ internal class PrintStatementFeature {
 
   @BeforeEach
   fun setup() {
-    account = Account(TransactionStorage(), StatementPrinter())
+    account = Account(TransactionStorage(), StatementPrinter(console))
   }
 
   @Test
