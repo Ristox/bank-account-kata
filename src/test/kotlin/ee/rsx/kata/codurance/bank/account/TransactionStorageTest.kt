@@ -2,6 +2,7 @@ package ee.rsx.kata.codurance.bank.account
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import java.time.LocalDate
 import kotlin.test.Test
 
 class TransactionStorageTest {
@@ -78,5 +79,19 @@ class TransactionStorageTest {
     val expectedRunningBalance = 645 - 200 + 555 - 150 + 200
     assertThat(allTransactions.sumOf { it.amount })
       .isEqualTo(expectedRunningBalance)
+  }
+
+  @Test
+  fun `adds current date to each transaction`() {
+    val expectedDate = LocalDate.now()
+
+    transactionStorage.addDeposit(450)
+    transactionStorage.addDeposit(1000)
+    transactionStorage.addWithdrawal(850)
+    transactionStorage.addDeposit(200)
+    transactionStorage.addDeposit(75)
+
+    assertThat(transactionStorage.listAll().map { it.date })
+      .allMatch { it == expectedDate }
   }
 }
