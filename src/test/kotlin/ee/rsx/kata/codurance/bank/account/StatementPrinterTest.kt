@@ -33,7 +33,7 @@ class StatementPrinterTest {
   }
 
   @Test
-  fun `prints the added transaction to console, after the statement header`() {
+  fun `prints the provided single transaction to console, after the statement header`() {
     val transactions = listOf(Transaction(555))
 
     statementPrinter.print(transactions)
