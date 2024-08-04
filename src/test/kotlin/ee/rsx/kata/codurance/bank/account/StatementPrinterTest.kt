@@ -70,6 +70,7 @@ class StatementPrinterTest {
         verify(it).printLine("$todaysDatePrinted  | 2200.00   | 2800.00   |")
         verify(it).printLine("$todaysDatePrinted  | -180.00   | 600.00   |")
         verify(it).printLine("$todaysDatePrinted  | 780.00   | 780.00   |")
+        verifyNoMoreInteractions()
       }
     }
   }
