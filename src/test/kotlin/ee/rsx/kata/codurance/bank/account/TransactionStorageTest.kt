@@ -20,4 +20,13 @@ class TransactionStorageTest {
     assertThat(transactionStorage.listAll())
       .containsExactly(Transaction(580))
   }
+
+  @Test
+  fun `adding two deposits adds a two new positive transaction of the given amount`() {
+    transactionStorage.addDeposit(580)
+    transactionStorage.addDeposit(799)
+
+    assertThat(transactionStorage.listAll())
+      .containsExactly(Transaction(580), Transaction(799))
+  }
 }
