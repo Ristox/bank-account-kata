@@ -64,12 +64,12 @@ class StatementPrinterTest {
     console.let {
       inOrder(it).apply {
         verify(it).printLine("DATE        | AMOUNT   | BALANCE  |")
-        verify(it).printLine("$todaysDatePrinted  | -499.00  | 2451.00  |")
-        verify(it).printLine("$todaysDatePrinted  | 150.00   | 2950.00  |")
-        verify(it).printLine("$todaysDatePrinted  | 0.00     | 2800.00  |")
-        verify(it).printLine("$todaysDatePrinted  | 2200.00  | 2800.00  |")
-        verify(it).printLine("$todaysDatePrinted  | -180.00  | 600.00  |")
-        verify(it).printLine("$todaysDatePrinted  | 780.00   | 780.00  |")
+        verify(it).printLine("$todaysDatePrinted  | -499.00   | 2451.00   |")
+        verify(it).printLine("$todaysDatePrinted  | 150.00   | 2950.00   |")
+        verify(it).printLine("$todaysDatePrinted  | 0.00   | 2800.00   |")
+        verify(it).printLine("$todaysDatePrinted  | 2200.00   | 2800.00   |")
+        verify(it).printLine("$todaysDatePrinted  | -180.00   | 600.00   |")
+        verify(it).printLine("$todaysDatePrinted  | 780.00   | 780.00   |")
       }
     }
   }
