@@ -29,4 +29,13 @@ class TransactionStorageTest {
     assertThat(transactionStorage.listAll())
       .containsExactly(Transaction(580), Transaction(799))
   }
+
+  @Test
+  fun `amount is available when running balance of transactions is greater than amount`() {
+    transactionStorage.addDeposit(300)
+    transactionStorage.addDeposit(201)
+
+    assertThat(transactionStorage.isAvailable(500))
+      .isTrue()
+  }
 }
