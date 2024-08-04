@@ -13,17 +13,16 @@ class StatementPrinter(private val console: Console) {
     console.printLine(STATEMENT_HEADER)
 
     val runningTotal = AtomicInteger(0)
-    transactions.map {
-      it to runningTotal.addAndGet(it.amount)
-    }
+    transactions
+      .map { it.asLineWith(runningTotal.addAndGet(it.amount)) }
       .reversed()
-      .forEach { (transaction, runningTotal) ->
-        console.printLine(transaction.asLineWith(runningTotal))
+      .forEach {
+        console.printLine(it)
       }
   }
 
   private fun Transaction.asLineWith(runningTotal: Int) =
-      "${date.format()}  | ${amount.format()}   | ${runningTotal.format()}   |"
+    "${date.format()}  | ${amount.format()}   | ${runningTotal.format()}   |"
 
 
   private fun LocalDate.format() = this.format(ofPattern(DATE_FORMAT))
