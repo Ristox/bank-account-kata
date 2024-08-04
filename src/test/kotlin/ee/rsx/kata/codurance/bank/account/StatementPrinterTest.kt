@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.inOrder
 import org.mockito.kotlin.verify
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter.ofPattern
 
 @ExtendWith(MockitoExtension::class)
 class StatementPrinterTest {
@@ -26,5 +29,20 @@ class StatementPrinterTest {
     statementPrinter.print(transactions = emptyList())
     
     verify(console).printLine("DATE        | AMOUNT   | BALANCE  |")
+  }
+
+  @Test
+  fun `prints the added transaction to console, after the statement header`() {
+    val transactions = listOf(Transaction(555))
+
+    statementPrinter.print(transactions)
+
+    val expectedTodaysDatePrinted = LocalDate.now().format(ofPattern("dd/MM/yyyy"))
+    console.let {
+      inOrder(it).apply {
+        verify(it).printLine("DATE        | AMOUNT   | BALANCE  |")
+        verify(it).printLine("$expectedTodaysDatePrinted  | 555.00   | 555.00   |")
+      }
+    }
   }
 }
