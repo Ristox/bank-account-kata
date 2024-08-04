@@ -4,6 +4,7 @@ import ee.rsx.kata.codurance.bank.Console
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter.ofPattern
+import java.util.concurrent.atomic.AtomicInteger
 
 
 class StatementPrinter(private val console: Console) {
@@ -11,10 +12,9 @@ class StatementPrinter(private val console: Console) {
   fun print(transactions: List<Transaction>) {
     console.printLine(STATEMENT_HEADER)
 
-    var runningTotal = 0
+    val runningTotal = AtomicInteger(0)
     transactions.map {
-      runningTotal += it.amount
-      it to runningTotal
+      it to runningTotal.addAndGet(it.amount)
     }
       .reversed()
       .forEach { (transaction, runningTotal) ->
