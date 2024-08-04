@@ -64,4 +64,19 @@ class TransactionStorageTest {
     assertThat(transactionStorage.listAll())
       .containsExactly(Transaction(-477))
   }
+
+  @Test
+  fun `adding deposits and withdrawals results in expected running balance of all transactions`() {
+    transactionStorage.addDeposit(645)
+    transactionStorage.addWithdrawal(200)
+    transactionStorage.addDeposit(555)
+    transactionStorage.addWithdrawal(150)
+    transactionStorage.addDeposit(200)
+
+    val allTransactions = transactionStorage.listAll()
+
+    val expectedRunningBalance = 645 - 200 + 555 - 150 + 200
+    assertThat(allTransactions.sumOf { it.amount })
+      .isEqualTo(expectedRunningBalance)
+  }
 }
