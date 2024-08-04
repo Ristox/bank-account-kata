@@ -16,9 +16,7 @@ class StatementPrinter(private val console: Console) {
     transactions
       .map { it.asLineWith(runningTotal.addAndGet(it.amount)) }
       .reversed()
-      .forEach {
-        console.printLine(it)
-      }
+      .forEach(console::printLine)
   }
 
   private fun Transaction.asLineWith(runningTotal: Int) =
