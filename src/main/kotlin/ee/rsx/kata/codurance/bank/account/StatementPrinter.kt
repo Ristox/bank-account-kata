@@ -1,6 +1,7 @@
 package ee.rsx.kata.codurance.bank.account
 
 import ee.rsx.kata.codurance.bank.Console
+import java.math.BigDecimal
 import java.time.format.DateTimeFormatter.ofPattern
 
 class StatementPrinter(private val console: Console) {
@@ -13,9 +14,10 @@ class StatementPrinter(private val console: Console) {
     }
   }
 
-  private fun Transaction.asLine(): String {
-    return "${date.format(ofPattern(DATE_FORMAT))}  | $amount.00   | $amount.00   |"
-  }
+  private fun Transaction.asLine(): String =
+    with(BigDecimal(amount).setScale(2)) {
+      "${date.format(ofPattern(DATE_FORMAT))}  | $this   | $this   |"
+    }
 
   companion object {
     const val DATE_FORMAT = "dd/MM/yyyy"
