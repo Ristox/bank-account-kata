@@ -8,15 +8,15 @@ class TransactionStorage {
     transactions.add(Transaction(amount))
   }
 
-  fun isAvailable(amount: Int): Boolean {
-    return transactions.sumOf { it.amount } >= amount
-  }
+  fun isAvailable(amount: Int) =
+    runningBalance() >= amount
 
   fun addWithdrawal(amount: Int) {
     transactions.add(Transaction(-amount))
   }
 
-  fun listAll(): List<Transaction> {
-    return transactions.toList()
-  }
+  fun listAll() = transactions.toList()
+
+  private fun runningBalance() =
+    transactions.sumOf { it.amount }
 }
