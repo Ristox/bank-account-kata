@@ -56,4 +56,12 @@ class TransactionStorageTest {
     assertThat(transactionStorage.isAvailable(400))
       .isTrue()
   }
+
+  @Test
+  fun `adding withdrawal adds a new negative transaction of the given amount`() {
+    transactionStorage.addWithdrawal(477)
+
+    assertThat(transactionStorage.listAll())
+      .containsExactly(Transaction(-477))
+  }
 }
