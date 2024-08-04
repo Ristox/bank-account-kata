@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import java.time.LocalDate
 import kotlin.test.Test
 
-class TransactionStorageTest {
+internal class TransactionStorageTest {
 
   private lateinit var transactionStorage: TransactionStorage
 
