@@ -38,4 +38,22 @@ class TransactionStorageTest {
     assertThat(transactionStorage.isAvailable(500))
       .isTrue()
   }
+
+  @Test
+  fun `amount is not available, when running balance of transactions is less than amount`() {
+    transactionStorage.addDeposit(300)
+    transactionStorage.addDeposit(199)
+
+    assertThat(transactionStorage.isAvailable(500))
+      .isFalse()
+  }
+
+  @Test
+  fun `amount is available, when running balance of transactions is equal to amount`() {
+    transactionStorage.addDeposit(300)
+    transactionStorage.addDeposit(100)
+
+    assertThat(transactionStorage.isAvailable(400))
+      .isTrue()
+  }
 }
