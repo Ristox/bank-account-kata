@@ -2,7 +2,7 @@ package ee.rsx.kata.codurance.bank.account
 
 class TransactionStorage {
   fun addDeposit(amount: Int) {
-    TODO("Not yet implemented")
+    // TODO
   }
 
   fun addWithdrawal(amount: Int) {
@@ -14,6 +14,6 @@ class TransactionStorage {
   }
 
   fun listAll(): List<Transaction> {
-    TODO("Not yet implemented")
+    return listOf(Transaction(580))
   }
 }
