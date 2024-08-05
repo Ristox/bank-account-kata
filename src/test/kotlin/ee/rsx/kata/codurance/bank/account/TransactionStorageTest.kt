@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
 import java.time.Clock
 import java.time.LocalDate
+import java.time.Month.FEBRUARY
 import java.time.ZoneOffset.UTC
 import kotlin.test.Test
 
@@ -22,6 +23,7 @@ internal class TransactionStorageTest {
   @BeforeEach
   fun setup() {
     transactionStorage = TransactionStorage(clock)
+    whenTodayIs(LocalDate.now())
   }
 
   @Test
@@ -107,8 +109,8 @@ internal class TransactionStorageTest {
 
   @Test
   fun `adds a custom date taken from Clock, to each transaction`() {
-    val expectedDate = LocalDate.of(2022, 2, 22)
-    whenever(clock.instant()).thenReturn(expectedDate.atStartOfDay().toInstant(UTC))
+    val expectedDate = LocalDate.of(2022, FEBRUARY, 22)
+    whenTodayIs(expectedDate)
 
     transactionStorage.addDeposit(450)
     transactionStorage.addDeposit(1000)
@@ -118,5 +120,9 @@ internal class TransactionStorageTest {
 
     assertThat(transactionStorage.listAll().map { it.date })
       .allMatch { it == expectedDate }
+  }
+
+  private fun whenTodayIs(date: LocalDate) {
+    whenever(clock.instant()).thenReturn(date.atStartOfDay().toInstant(UTC))
   }
 }
