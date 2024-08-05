@@ -14,8 +14,9 @@ fun main() {
   val statementPrinterToSystemOut =
     StatementPrinter(console = SystemOutConsole())
 
-  with(Account(inMemoryTransactions, statementPrinterToSystemOut)) {
+  val bankAccount = Account(inMemoryTransactions, statementPrinterToSystemOut)
 
+  with(bankAccount) {
     deposit(1000)
     withdraw(100)
     deposit(500)
