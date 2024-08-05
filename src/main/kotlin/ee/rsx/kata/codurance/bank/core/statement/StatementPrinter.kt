@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter.ofPattern
 import java.util.concurrent.atomic.AtomicInteger
 
 
-class StatementPrinter(private val console: Console) {
+internal class StatementPrinter(private val console: Console) {
 
   fun print(transactions: List<Transaction>) {
     console.printLine(STATEMENT_HEADER)

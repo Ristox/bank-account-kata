@@ -14,7 +14,7 @@ import java.time.LocalDate.now
 import java.time.format.DateTimeFormatter.ofPattern
 
 @ExtendWith(MockitoExtension::class)
-class StatementPrinterTest {
+internal class StatementPrinterTest {
 
   @Mock
   private lateinit var console: Console

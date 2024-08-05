@@ -5,7 +5,7 @@ import ee.rsx.kata.codurance.bank.core.transaction.gateway.Transactions
 import java.time.Clock
 import java.time.ZoneOffset.UTC
 
-class InMemoryTransactionStorage(private val clock: Clock) : Transactions {
+internal class InMemoryTransactionStorage(private val clock: Clock) : Transactions {
 
   private val transactions: MutableList<Transaction> = mutableListOf()
 
