@@ -1,6 +1,7 @@
 package ee.rsx.kata.codurance.bank.core.statement
 
 import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter.Companion.DATE_FORMAT
+import ee.rsx.kata.codurance.bank.core.statement.gateway.Console
 import ee.rsx.kata.codurance.bank.core.transaction.Transaction
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

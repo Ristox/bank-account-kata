@@ -1,19 +1,19 @@
 package ee.rsx.kata.codurance.bank
 
 import ee.rsx.kata.codurance.bank.core.Account
-import ee.rsx.kata.codurance.bank.core.statement.Console
 import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
-import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.infra.transactions.InMemoryTransactionStorage
+import ee.rsx.kata.codurance.bank.infra.console.SystemOutConsole
 import java.time.Clock
 
 fun main() {
   val systemClock = Clock.systemUTC()
-  val transactionStorage = TransactionStorage(systemClock)
+  val inMemoryTransactions = InMemoryTransactionStorage(systemClock)
 
-  val console = Console()
-  val statementPrinter = StatementPrinter(console)
+  val console = SystemOutConsole()
+  val statementPrinterToSystemOut = StatementPrinter(console)
 
-  val account = Account(transactionStorage, statementPrinter)
+  val account = Account(inMemoryTransactions, statementPrinterToSystemOut)
 
   account.deposit(1000)
   account.withdraw(100)

@@ -4,7 +4,7 @@ import ee.rsx.kata.codurance.bank.api.BankAccount
 import ee.rsx.kata.codurance.bank.core.Account
 import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
 import ee.rsx.kata.codurance.bank.core.transaction.Transaction
-import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.core.transaction.gateway.Transactions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
@@ -19,7 +19,7 @@ import kotlin.test.Test
 internal class AccountTest {
 
   @Mock
-  private lateinit var transactions: TransactionStorage
+  private lateinit var transactions: Transactions
 
   @Mock
   private lateinit var statementPrinter: StatementPrinter

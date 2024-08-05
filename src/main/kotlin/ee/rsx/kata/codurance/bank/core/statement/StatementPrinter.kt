@@ -1,5 +1,6 @@
 package ee.rsx.kata.codurance.bank.core.statement
 
+import ee.rsx.kata.codurance.bank.core.statement.gateway.Console
 import ee.rsx.kata.codurance.bank.core.transaction.Transaction
 import java.math.BigDecimal
 import java.time.LocalDate

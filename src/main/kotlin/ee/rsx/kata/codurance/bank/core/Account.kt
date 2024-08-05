@@ -2,10 +2,10 @@ package ee.rsx.kata.codurance.bank.core
 
 import ee.rsx.kata.codurance.bank.api.BankAccount
 import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
-import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.core.transaction.gateway.Transactions
 
 internal class Account(
-  private val transactions: TransactionStorage,
+  private val transactions: Transactions,
   private val statementPrinter: StatementPrinter
 ) : BankAccount {
 

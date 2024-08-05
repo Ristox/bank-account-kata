@@ -1,5 +1,6 @@
-package ee.rsx.kata.codurance.bank.core.transaction
+package ee.rsx.kata.codurance.bank.infra.transactions
 
+import ee.rsx.kata.codurance.bank.core.transaction.Transaction
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
@@ -13,16 +14,16 @@ import java.time.ZoneOffset.UTC
 import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
-internal class TransactionStorageTest {
+internal class InMemoryTransactionStorageTest {
 
   @Mock
   private lateinit var clock: Clock
 
-  private lateinit var transactionStorage: TransactionStorage
+  private lateinit var transactionStorage: InMemoryTransactionStorage
 
   @BeforeEach
   fun setup() {
-    transactionStorage = TransactionStorage(clock)
+    transactionStorage = InMemoryTransactionStorage(clock)
     whenTodayIs(LocalDate.now())
   }
 
