@@ -7,16 +7,19 @@ import ee.rsx.kata.codurance.bank.infra.console.SystemOutConsole
 import java.time.Clock
 
 fun main() {
-  val systemClock = Clock.systemUTC()
-  val inMemoryTransactions = InMemoryTransactionStorage(systemClock)
 
-  val console = SystemOutConsole()
-  val statementPrinterToSystemOut = StatementPrinter(console)
+  val inMemoryTransactions =
+    InMemoryTransactionStorage(clock = Clock.systemUTC())
 
-  val account = Account(inMemoryTransactions, statementPrinterToSystemOut)
+  val statementPrinterToSystemOut =
+    StatementPrinter(console = SystemOutConsole())
 
-  account.deposit(1000)
-  account.withdraw(100)
-  account.deposit(500)
-  account.printStatement()
+  with(Account(inMemoryTransactions, statementPrinterToSystemOut)) {
+
+    deposit(1000)
+    withdraw(100)
+    deposit(500)
+
+    printStatement()
+  }
 }
