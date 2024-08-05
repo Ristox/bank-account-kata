@@ -36,8 +36,10 @@ internal class TransactionStorageTest {
 
   @Test
   fun `adding two deposits adds a two new positive transaction of the given amount`() {
-    transactionStorage.addDeposit(580)
-    transactionStorage.addDeposit(799)
+    with(transactionStorage) {
+      addDeposit(580)
+      addDeposit(799)
+    }
 
     assertThat(transactionStorage.listAll())
       .containsExactly(Transaction(580), Transaction(799))
@@ -45,8 +47,10 @@ internal class TransactionStorageTest {
 
   @Test
   fun `amount is available when running balance of transactions is greater than amount`() {
-    transactionStorage.addDeposit(300)
-    transactionStorage.addDeposit(201)
+    with(transactionStorage) {
+      addDeposit(300)
+      addDeposit(201)
+    }
 
     assertThat(transactionStorage.isAvailable(500))
       .isTrue()
@@ -54,8 +58,10 @@ internal class TransactionStorageTest {
 
   @Test
   fun `amount is not available, when running balance of transactions is less than amount`() {
-    transactionStorage.addDeposit(300)
-    transactionStorage.addDeposit(199)
+    with(transactionStorage) {
+      addDeposit(300)
+      addDeposit(199)
+    }
 
     assertThat(transactionStorage.isAvailable(500))
       .isFalse()
@@ -63,8 +69,10 @@ internal class TransactionStorageTest {
 
   @Test
   fun `amount is available, when running balance of transactions is equal to amount`() {
-    transactionStorage.addDeposit(300)
-    transactionStorage.addDeposit(100)
+    with(transactionStorage) {
+      addDeposit(300)
+      addDeposit(100)
+    }
 
     assertThat(transactionStorage.isAvailable(400))
       .isTrue()
@@ -80,11 +88,13 @@ internal class TransactionStorageTest {
 
   @Test
   fun `adding deposits and withdrawals results in expected running balance of all transactions`() {
-    transactionStorage.addDeposit(645)
-    transactionStorage.addWithdrawal(200)
-    transactionStorage.addDeposit(555)
-    transactionStorage.addWithdrawal(150)
-    transactionStorage.addDeposit(200)
+    with(transactionStorage) {
+      addDeposit(645)
+      addWithdrawal(200)
+      addDeposit(555)
+      addWithdrawal(150)
+      addDeposit(200)
+    }
 
     val allTransactions = transactionStorage.listAll()
 
@@ -96,12 +106,13 @@ internal class TransactionStorageTest {
   @Test
   fun `adds current date to each transaction`() {
     val expectedDate = LocalDate.now()
-
-    transactionStorage.addDeposit(450)
-    transactionStorage.addDeposit(1000)
-    transactionStorage.addWithdrawal(850)
-    transactionStorage.addDeposit(200)
-    transactionStorage.addDeposit(75)
+    with(transactionStorage) {
+      addDeposit(450)
+      addDeposit(1000)
+      addWithdrawal(850)
+      addDeposit(200)
+      addDeposit(75)
+    }
 
     assertThat(transactionStorage.listAll().map { it.date })
       .allMatch { it == expectedDate }
@@ -111,12 +122,13 @@ internal class TransactionStorageTest {
   fun `adds a custom date taken from Clock, to each transaction`() {
     val expectedDate = LocalDate.of(2022, FEBRUARY, 22)
     whenTodayIs(expectedDate)
-
-    transactionStorage.addDeposit(450)
-    transactionStorage.addDeposit(1000)
-    transactionStorage.addWithdrawal(850)
-    transactionStorage.addDeposit(200)
-    transactionStorage.addDeposit(75)
+    with(transactionStorage) {
+      addDeposit(450)
+      addDeposit(1000)
+      addWithdrawal(850)
+      addDeposit(200)
+      addDeposit(75)
+    }
 
     assertThat(transactionStorage.listAll().map { it.date })
       .allMatch { it == expectedDate }
