@@ -1,4 +1,4 @@
-package ee.rsx.kata.codurance.bank.account
+package ee.rsx.kata.codurance.bank.transaction
 
 import java.time.Clock
 import java.time.ZoneOffset.UTC

@@ -1,11 +1,13 @@
-package ee.rsx.kata.codurance.bank.account
+package ee.rsx.kata.codurance.bank
 
-import ee.rsx.kata.codurance.bank.AccountService
+import ee.rsx.kata.codurance.bank.api.BankAccount
+import ee.rsx.kata.codurance.bank.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
 
-class Account(
+internal class Account(
   private val transactions: TransactionStorage,
   private val statementPrinter: StatementPrinter
-) : AccountService {
+) : BankAccount {
 
   override fun deposit(amount: Int) {
     transactions.addDeposit(amount)

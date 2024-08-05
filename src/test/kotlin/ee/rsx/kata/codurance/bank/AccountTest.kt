@@ -1,5 +1,9 @@
-package ee.rsx.kata.codurance.bank.account
+package ee.rsx.kata.codurance.bank
 
+import ee.rsx.kata.codurance.bank.api.BankAccount
+import ee.rsx.kata.codurance.bank.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.transaction.Transaction
+import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
@@ -19,7 +23,7 @@ internal class AccountTest {
   @Mock
   private lateinit var statementPrinter: StatementPrinter
 
-  private lateinit var account: Account
+  private lateinit var account: BankAccount
 
   @BeforeEach
   fun setup() {

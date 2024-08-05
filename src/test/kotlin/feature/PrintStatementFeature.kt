@@ -1,10 +1,10 @@
 package feature
 
-import ee.rsx.kata.codurance.bank.AccountService
-import ee.rsx.kata.codurance.bank.Console
-import ee.rsx.kata.codurance.bank.account.Account
-import ee.rsx.kata.codurance.bank.account.StatementPrinter
-import ee.rsx.kata.codurance.bank.account.TransactionStorage
+import ee.rsx.kata.codurance.bank.Account
+import ee.rsx.kata.codurance.bank.api.BankAccount
+import ee.rsx.kata.codurance.bank.statement.Console
+import ee.rsx.kata.codurance.bank.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
@@ -26,7 +26,7 @@ internal class PrintStatementFeature {
   @Mock
   private lateinit var console: Console
 
-  private lateinit var account: AccountService
+  private lateinit var account: BankAccount
 
   @BeforeEach
   fun setup() {
