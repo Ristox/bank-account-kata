@@ -10,10 +10,14 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.inOrder
 import org.mockito.junit.jupiter.MockitoExtension
+import java.time.Clock
 import kotlin.test.Test
 
 @ExtendWith(MockitoExtension::class)
 internal class PrintStatementFeature {
+
+  @Mock
+  private lateinit var clock: Clock
 
   @Mock
   private lateinit var console: Console
@@ -22,7 +26,7 @@ internal class PrintStatementFeature {
 
   @BeforeEach
   fun setup() {
-    account = Account(TransactionStorage(), StatementPrinter(console))
+    account = Account(TransactionStorage(clock), StatementPrinter(console))
   }
 
   @Test

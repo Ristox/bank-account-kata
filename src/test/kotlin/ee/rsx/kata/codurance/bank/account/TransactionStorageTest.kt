@@ -2,16 +2,26 @@ package ee.rsx.kata.codurance.bank.account
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.Mock
+import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.whenever
+import java.time.Clock
 import java.time.LocalDate
+import java.time.ZoneOffset.UTC
 import kotlin.test.Test
 
+@ExtendWith(MockitoExtension::class)
 internal class TransactionStorageTest {
+
+  @Mock
+  private lateinit var clock: Clock
 
   private lateinit var transactionStorage: TransactionStorage
 
   @BeforeEach
   fun setup() {
-    transactionStorage = TransactionStorage()
+    transactionStorage = TransactionStorage(clock)
   }
 
   @Test
@@ -84,6 +94,21 @@ internal class TransactionStorageTest {
   @Test
   fun `adds current date to each transaction`() {
     val expectedDate = LocalDate.now()
+
+    transactionStorage.addDeposit(450)
+    transactionStorage.addDeposit(1000)
+    transactionStorage.addWithdrawal(850)
+    transactionStorage.addDeposit(200)
+    transactionStorage.addDeposit(75)
+
+    assertThat(transactionStorage.listAll().map { it.date })
+      .allMatch { it == expectedDate }
+  }
+
+  @Test
+  fun `adds a custom date taken from Clock, to each transaction`() {
+    val expectedDate = LocalDate.of(2022, 2, 22)
+    whenever(clock.instant()).thenReturn(expectedDate.atStartOfDay().toInstant(UTC))
 
     transactionStorage.addDeposit(450)
     transactionStorage.addDeposit(1000)

@@ -1,6 +1,8 @@
 package ee.rsx.kata.codurance.bank.account
 
-class TransactionStorage {
+import java.time.Clock
+
+class TransactionStorage(private val clock: Clock) {
 
   private val transactions: MutableList<Transaction> = mutableListOf()
 
