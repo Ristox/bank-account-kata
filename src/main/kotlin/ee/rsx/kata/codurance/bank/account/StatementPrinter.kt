@@ -12,6 +12,10 @@ class StatementPrinter(private val console: Console) {
   fun print(transactions: List<Transaction>) {
     console.printLine(STATEMENT_HEADER)
 
+    printStatementLinesFor(transactions)
+  }
+
+  private fun printStatementLinesFor(transactions: List<Transaction>) {
     val runningTotal = AtomicInteger(0)
     transactions
       .map { it.asLineWith(runningTotal.addAndGet(it.amount)) }
