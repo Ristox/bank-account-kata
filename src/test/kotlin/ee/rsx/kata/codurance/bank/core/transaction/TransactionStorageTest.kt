@@ -1,4 +1,4 @@
-package ee.rsx.kata.codurance.bank.transaction
+package ee.rsx.kata.codurance.bank.core.transaction
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach

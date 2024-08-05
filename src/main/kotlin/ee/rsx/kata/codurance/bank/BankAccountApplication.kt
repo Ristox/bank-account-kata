@@ -1,8 +1,9 @@
 package ee.rsx.kata.codurance.bank
 
-import ee.rsx.kata.codurance.bank.statement.Console
-import ee.rsx.kata.codurance.bank.statement.StatementPrinter
-import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.core.Account
+import ee.rsx.kata.codurance.bank.core.statement.Console
+import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
 import java.time.Clock
 
 fun main() {

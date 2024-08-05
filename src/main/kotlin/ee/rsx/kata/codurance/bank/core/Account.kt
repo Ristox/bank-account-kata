@@ -1,8 +1,8 @@
-package ee.rsx.kata.codurance.bank
+package ee.rsx.kata.codurance.bank.core
 
 import ee.rsx.kata.codurance.bank.api.BankAccount
-import ee.rsx.kata.codurance.bank.statement.StatementPrinter
-import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
 
 internal class Account(
   private val transactions: TransactionStorage,

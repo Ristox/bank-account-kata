@@ -1,9 +1,10 @@
 package ee.rsx.kata.codurance.bank
 
 import ee.rsx.kata.codurance.bank.api.BankAccount
-import ee.rsx.kata.codurance.bank.statement.StatementPrinter
-import ee.rsx.kata.codurance.bank.transaction.Transaction
-import ee.rsx.kata.codurance.bank.transaction.TransactionStorage
+import ee.rsx.kata.codurance.bank.core.Account
+import ee.rsx.kata.codurance.bank.core.statement.StatementPrinter
+import ee.rsx.kata.codurance.bank.core.transaction.Transaction
+import ee.rsx.kata.codurance.bank.core.transaction.TransactionStorage
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
